@@ -1,3 +1,98 @@
-import Link from "next/link";import {Leaf,HeartPulse,Dumbbell,Flower2,MonitorPlay,Users,ShoppingBag,PlayCircle} from "lucide-react";
-const cats=[['Nutrition','Healthy recipes and meal ideas',Leaf,'/nutrition'],['Recovery','Recover smarter. Feel better.',HeartPulse,'/recovery'],['Fitness','Movement for every body',Dumbbell,'/start-here'],['Wellness','Mind, body and daily habits',Flower2,'/start-here'],['WonderfulLife TV','Videos that educate and inspire',MonitorPlay,'/wellness-tv'],['Community','Real people. Real results.',Users,'/community'],['Shop','Products to support your journey',ShoppingBag,'/shop']];
-export default function Home(){return <main><section className="hero"><div className="container"><div className="hero-copy"><h1>Live Your<br/>Best Life.</h1><h2>Every Day.</h2><p>A Zoey-led wellness destination for nutrition, recovery, healthy recipes, movement and everyday inspiration.</p><div className="hero-actions"><Link className="pill primary" href="/meet-zoey"><PlayCircle/> MEET ZOEY</Link><Link className="pill" href="/start-here">START YOUR JOURNEY</Link></div></div></div></section><section className="category-strip"><div className="container category-grid">{cats.map(([n,t,I,h]:any)=><Link className="category" key={n} href={h}><I/><strong>{n}</strong><span>{t}</span></Link>)}</div></section><section className="section"><div className="container"><div className="eyebrow">Your personal wellness destination</div><h2>Start where you are.</h2><p className="lead">Choose one small goal and let WonderfulLife organize the next steps—content, habits, encouragement and personalized suggestions in one calm experience.</p><div className="grid3"><article className="card"><Leaf/><h3>Eat well</h3><p>Approachable recipes, meal ideas and practical nutrition education for everyday life.</p></article><article className="card"><HeartPulse/><h3>Recover well</h3><p>Sleep, stress, mobility and restorative routines that help you feel ready for tomorrow.</p></article><article className="card"><Flower2/><h3>Live well</h3><p>Personalized guidance from Zoey, saved content and a wellness path that grows with you.</p></article></div></div></section></main>}
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Leaf, HeartPulse, Dumbbell, Flower2, MonitorPlay, Users, ShoppingBag } from "lucide-react";
+
+const categories = [
+  { name: "Nutrition", text: "Healthy recipes and meal ideas", icon: Leaf, href: "/nutrition" },
+  { name: "Recovery", text: "Recover smarter. Feel better.", icon: HeartPulse, href: "/recovery" },
+  { name: "Fitness", text: "Movement for every body", icon: Dumbbell, href: "/start-here" },
+  { name: "Wellness", text: "Mind, body and daily habits", icon: Flower2, href: "/start-here" },
+  { name: "WonderfulLife TV", text: "Videos that educate and inspire", icon: MonitorPlay, href: "/wellness-tv" },
+  { name: "Community", text: "Real people. Real results.", icon: Users, href: "/community" },
+  { name: "Shop", text: "Products to support your journey", icon: ShoppingBag, href: "/shop" },
+];
+
+export default function Home() {
+  return (
+    <main className="approved-home">
+      <section className="approved-hero" aria-label="WonderfulLife premium homepage">
+        <Image
+          src="/images/homepage-approved.png"
+          alt="WonderfulLife.ca premium wellness homepage featuring Zoey above Vancouver harbour on a bright summer afternoon"
+          fill
+          priority
+          sizes="100vw"
+          className="approved-hero-image"
+        />
+
+        <nav className="hero-hotspots" aria-label="Primary navigation">
+          <Link className="hotspot hotspot-nutrition" href="/nutrition">Nutrition</Link>
+          <Link className="hotspot hotspot-recovery" href="/recovery">Recovery</Link>
+          <Link className="hotspot hotspot-kitchen" href="/kitchen">Kitchen</Link>
+          <Link className="hotspot hotspot-youtube" href="/wellness-tv">YouTube</Link>
+          <Link className="hotspot hotspot-community" href="/community">Community</Link>
+          <Link className="hotspot hotspot-shop" href="/shop">Shop</Link>
+          <Link className="hotspot hotspot-search" href="/search" aria-label="Search">Search</Link>
+          <Link className="hotspot hotspot-account" href="/sign-in" aria-label="Account">Account</Link>
+          <Link className="hotspot hotspot-cart" href="/shop" aria-label="Shopping bag">Shopping bag</Link>
+          <Link className="hotspot hotspot-start" href="/start-here">Start Here</Link>
+          <Link className="hotspot hotspot-meet" href="/meet-zoey">Meet Zoey</Link>
+          <Link className="hotspot hotspot-journey" href="/start-here">Start Your Journey</Link>
+          {categories.map((category, index) => (
+            <Link
+              key={category.name}
+              className={`hotspot hotspot-category hotspot-category-${index + 1}`}
+              href={category.href}
+              aria-label={category.name}
+            >
+              {category.name}
+            </Link>
+          ))}
+        </nav>
+      </section>
+
+      <section className="mobile-home" aria-label="WonderfulLife mobile homepage">
+        <div className="mobile-home-image" />
+        <div className="mobile-home-copy">
+          <p className="eyebrow">WonderfulLife.ca</p>
+          <h1>Live Your<br />Best Life.</h1>
+          <p className="mobile-script">Every Day.</p>
+          <p className="mobile-lead">A Zoey-led wellness destination for nutrition, recovery, healthy recipes, movement and everyday inspiration.</p>
+          <div className="mobile-actions">
+            <Link className="pill primary" href="/meet-zoey">Meet Zoey</Link>
+            <Link className="pill" href="/start-here">Start Your Journey</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="premium-category-section">
+        <div className="container premium-category-grid">
+          {categories.map(({ name, text, icon: Icon, href }) => (
+            <Link className="premium-category" key={name} href={href}>
+              <Icon aria-hidden="true" />
+              <strong>{name}</strong>
+              <span>{text}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-intro section">
+        <div className="container split">
+          <div>
+            <div className="eyebrow">Your journey, beautifully simplified</div>
+            <h2>Wellness that feels personal.</h2>
+            <p className="lead">Explore thoughtful guidance, nourishing recipes, recovery support and daily encouragement—organized around the life you want to build.</p>
+            <Link className="text-link" href="/start-here">Discover your wellness path <ArrowRight /></Link>
+          </div>
+          <div className="home-intro-card">
+            <span>Ask Zoey</span>
+            <h3>Your friendly AI wellness guide.</h3>
+            <p>Get personalized suggestions, discover content and turn one small goal into a practical next step.</p>
+            <Link className="pill primary" href="/ask-zoey">Start a conversation</Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

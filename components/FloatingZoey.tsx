@@ -1,0 +1,1 @@
+import Link from "next/link";export default function FloatingZoey(){return <Link href="/ask-zoey" aria-label="Ask Zoey" style={{position:'fixed',right:22,bottom:22,zIndex:50,background:'#073f2a',color:'white',padding:'15px 22px',borderRadius:999,fontWeight:800,boxShadow:'0 10px 30px rgba(0,0,0,.25)'}}>Ask Zoey ✦</Link>}
